@@ -36,11 +36,11 @@
           <ul class="list-group list-group-flush">
             <li class="list-group-item d-flex justify-content-between align-items-center">
               <span><i class="fa-solid fa-temperature-half" aria-hidden="true"></i> Temperature</span>
-              <span>21.6 °C <small class="text-body-secondary">5 min ago</small></span>
+              <span><span id="kitchen-temp">21.6 °C</span> <small class="text-body-secondary">5 min ago</small></span>
             </li>
             <li class="list-group-item d-flex justify-content-between align-items-center">
               <span>Lights</span>
-              <button type="button" class="btn btn-sm btn-secondary">
+              <button id="kitchen-lights-btn" type="button" class="btn btn-sm btn-secondary">
                 <i class="fa-regular fa-lightbulb" aria-hidden="true"></i> <span>Off</span>
               </button>
             </li>
@@ -63,23 +63,23 @@
           <ul class="list-group list-group-flush">
             <li class="list-group-item d-flex justify-content-between align-items-center">
               <span><i class="fa-solid fa-temperature-half" aria-hidden="true"></i> Temperature</span>
-              <span>22.6 °C <small class="text-body-secondary">5 min ago</small></span>
+              <span><span id="living-temp">22.6 °C</span> <small class="text-body-secondary">5 min ago</small></span>
             </li>
             <li class="list-group-item d-flex justify-content-between align-items-center">
               <span>Ceiling Lights</span>
-              <button type="button" class="btn btn-sm btn-secondary">
+              <button id="living-ceiling-btn" type="button" class="btn btn-sm btn-secondary">
                 <i class="fa-regular fa-lightbulb" aria-hidden="true"></i> <span>Off</span>
               </button>
             </li>
             <li class="list-group-item d-flex justify-content-between align-items-center">
               <span>Ambient Lights</span>
-              <button type="button" class="btn btn-sm btn-warning">
+              <button id="living-ambient-btn" type="button" class="btn btn-sm btn-warning">
                 <i class="fa-solid fa-lightbulb" aria-hidden="true"></i> <span>On</span>
               </button>
             </li>
             <li class="list-group-item d-flex justify-content-between align-items-center">
               <span>Ambient Music</span>
-              <button type="button" class="btn btn-sm btn-warning">
+              <button id="living-music-btn" type="button" class="btn btn-sm btn-warning">
                 <i class="fa-solid fa-music" aria-hidden="true"></i> <span>On</span>
               </button>
             </li>
@@ -93,10 +93,10 @@
           <h2 class="card-header h5"><i class="fa-regular fa-clock" aria-hidden="true"></i> Clock</h2>
           <ul class="list-group list-group-flush">
             <li class="list-group-item d-flex justify-content-between">
-              <span>Time</span><span>22:30</span>
+              <span>Time</span><span id="clock-time">22:30</span>
             </li>
             <li class="list-group-item d-flex justify-content-between">
-              <span>Date</span><span>2018-09-18</span>
+              <span>Date</span><span id="clock-date">2018-09-18</span>
             </li>
             <li class="list-group-item d-flex justify-content-between">
               <span><i class="fa-solid fa-sun" aria-hidden="true"></i> Sunrise / Sunset</span><span>above horizon</span>
