@@ -10,6 +10,15 @@ var app = (function() {
       return String(number).padStart(2, '0');
     }
 
+    function formatTime(date) {
+      return pad(date.getHours()) + ':' + pad(date.getMinutes());
+    }
+
+    // "1 second ago", "5 seconds ago", ...
+    function plural(value, unit) {
+      return value + ' ' + unit + (value === 1 ? '' : 's') + ' ago';
+    }
+
     // ---------- Toggle buttons ----------
 
     const LAMP_ON = 'fa-solid fa-lightbulb';
@@ -71,5 +80,64 @@ var app = (function() {
     updateDate();
     updateClock();
     setInterval(updateClock, 1000);
+
+    // ---------- Weather (OpenWeatherMap) ----------
+
+    // W4-2b: call structure given in the worksheet
+    const WEATHER_URL =
+      'https://api.openweathermap.org/data/2.5/weather?units=metric&q=leiria&appid=' +
+      window.WEATHER_API_KEY;
+
+    let fetchedAt = null;   // time of the last successful request
+
+    // Success callback: fills the weather panel (W4-2a)
+    function showWeather(data) {
+      $('#weather-temp').text(data.main.temp.toFixed(1) + ' °C');
+      $('#weather-max').text(data.main.temp_max.toFixed(1) + ' °C');
+      $('#weather-min').text(data.main.temp_min.toFixed(1) + ' °C');
+      $('#weather-humidity').text(data.main.humidity + ' %');
+
+      // The API sends Unix time in seconds; Date expects milliseconds
+      $('#weather-sunrise').text(formatTime(new Date(data.sys.sunrise * 1000)));
+      $('#weather-sunset').text(formatTime(new Date(data.sys.sunset * 1000)));
+
+      fetchedAt = new Date();
+      $('#weather-fetched').text(formatTime(fetchedAt));
+      updateWeatherAge();
+    }
+
+    // Error callback: shows the HTTP status code
+    function showWeatherError(xhr) {
+      $('#weather-age').text('weather not available (error ' + xhr.status + ')');
+    }
+
+    function loadWeather() {
+      if (!window.WEATHER_API_KEY || window.WEATHER_API_KEY === 'YOUR_API_KEY') {
+        $('#weather-age').text('missing API key (js/config.js)');
+        return;
+      }
+      $.getJSON(WEATHER_URL)
+        .done(showWeather)
+        .fail(showWeatherError);
+    }
+
+    // W4-2c: seconds during the first minute, minutes until one hour, then hours
+    function updateWeatherAge() {
+      if (fetchedAt === null) {
+        return;
+      }
+      const seconds = Math.floor((Date.now() - fetchedAt.getTime()) / 1000);
+
+      if (seconds < 60) {
+        $('#weather-age').text(plural(seconds, 'second'));
+      } else if (seconds < 3600) {
+        $('#weather-age').text(plural(Math.floor(seconds / 60), 'minute'));
+      } else {
+        $('#weather-age').text(plural(Math.floor(seconds / 3600), 'hour'));
+      }
+    }
+
+    loadWeather();
+    setInterval(updateWeatherAge, 1000);
   });
 })();
