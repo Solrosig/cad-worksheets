@@ -63,6 +63,12 @@ Each milestone below matches the GitHub form under **Issues → Milestones →
 New milestone**, which has three fields: **Title**, **Due date (optional)** and
 **Description**. Copy each field into the form as it is.
 
+Every description uses the same structure: **Goal** (the outcome, in one
+sentence), **Deliverables**, **Out of scope**, **Exit criteria** (measurable
+checks for closing the milestone), **Depends on** and **Refs**. Individual
+tasks are not listed here; they become issues linked to the milestone (see
+section 5), and GitHub tracks the milestone's progress from those issues.
+
 Titles follow one pattern: the worksheet code (when there is one), then the
 outcome the milestone delivers, with no punctuation. GitHub sorts milestones by
 due date, so the M1–M8 numbers in this file are only for reference.
@@ -84,17 +90,22 @@ WS1 Semantic HTML5 dashboard and history pages
 
 **Description**
 ```text
-Worksheet 1: build the "Home Sweet Home" smart-home site with plain, semantic HTML5 only (no CSS framework, no JavaScript).
+Goal: The "Home Sweet Home" site exists as a clear, semantic HTML5 structure that later worksheets can style and script.
 
-Scope:
-- Dashboard page (index.html) with Kitchen, Living Room and Clock sections showing temperature, lights, windows and music
-- History page (history.html) with a table of past events
-- Menu (nav) linking Dashboard and History
-- Font Awesome icons for rooms and devices
+Deliverables:
+- Dashboard page with Kitchen, Living Room and Clock sections
+- History page with a table of past events
+- Shared navigation menu and Font Awesome icons
 
-Folder: Worksheets/01-HTML5
-Branch: ws1-html5
-Done when: both pages open in the browser, the menu works and the HTML validates.
+Out of scope: CSS frameworks, layout styling and any JavaScript (WS2 and WS3).
+
+Exit criteria:
+- Both pages open in the browser and link to each other through the menu
+- Both pages pass the W3C HTML validator with no errors
+- Headings, sections, lists and tables use the right semantic elements
+
+Depends on: nothing (first worksheet)
+Refs: branch ws1-html5, folder Worksheets/01-HTML5
 ```
 
 ---
@@ -110,17 +121,22 @@ WS2 Responsive Bootstrap layout for dashboard and history
 
 **Description**
 ```text
-Worksheet 2: restyle the WS1 pages with Bootstrap 5 and make them responsive.
+Goal: The dashboard and history pages look consistent and adapt to any screen size using Bootstrap 5.
 
-Scope:
-- Bootstrap start page (start.html) to check that the CDN setup works
-- Dashboard laid out as Bootstrap cards in a responsive grid (1/2/3 columns)
-- Responsive navbar with a collapse button on small screens
-- History page with a striped, hoverable Bootstrap table
+Deliverables:
+- Dashboard shown as Bootstrap cards in a responsive grid
+- Responsive navbar shared by both pages
+- History shown as a styled Bootstrap table
 
-Folder: Worksheets/02-Bootstrap
-Branch: ws2-bootstrap (built on ws1-html5)
-Done when: the layout adapts from phone to desktop and the navbar collapses correctly.
+Out of scope: interactive behaviour and live data (WS3 and WS4).
+
+Exit criteria:
+- Layout shows 1 column on phones (375px), 2 on tablets and 3 on desktop
+- Navbar collapses into a toggle button on small screens and expands again
+- No custom CSS is needed for the layout
+
+Depends on: WS1 Semantic HTML5 dashboard and history pages
+Refs: branch ws2-bootstrap, folder Worksheets/02-Bootstrap
 ```
 
 ---
@@ -136,17 +152,21 @@ WS3 Interactive dashboard with plain JavaScript
 
 **Description**
 ```text
-Worksheet 3: make the dashboard interactive with plain JavaScript (no libraries).
+Goal: The dashboard reacts to user actions and shows live values without reloading the page, using plain JavaScript only.
 
-Scope:
-- Meaningful ids on every element the script uses
-- Toggle buttons for lights and music: clicking switches text (On/Off), icon and colour
-- Room temperatures replaced by random values every 5 seconds
-- Live clock (updates every second) and today's date
+Deliverables:
+- Clickable light and music controls that show their current state
+- Live clock, date and simulated room temperatures
 
-Folder: Worksheets/03-Javascript (code in js/index.js)
-Branch: ws3-javascript (built on ws2-bootstrap)
-Done when: all toggles work, temperatures change and the clock ticks with no console errors.
+Out of scope: jQuery, external APIs and saving state between visits (WS4 and WS5).
+
+Exit criteria:
+- Every control switches text, icon and colour on click
+- Temperatures change every 5 s and the clock every 1 s
+- No errors in the browser console
+
+Depends on: WS2 Responsive Bootstrap layout for dashboard and history
+Refs: branch ws3-javascript, folder Worksheets/03-Javascript
 ```
 
 ---
@@ -162,18 +182,22 @@ WS4 jQuery dashboard with live OpenWeatherMap data
 
 **Description**
 ```text
-Worksheet 4: rewrite the dashboard logic in jQuery and add live weather data from a web API.
+Goal: The dashboard shows real weather data for Leiria from a public web API, with its logic written in jQuery.
 
-Scope:
-- WS3 features (toggles, temperatures, clock) rewritten with jQuery selectors and events
-- Weather card for Leiria loaded with $.getJSON from the OpenWeatherMap API: temperature, max/min, humidity, sunrise and sunset
-- "Fetched X seconds / minutes / hours ago" label that updates every second
-- Error message when the request fails or the API key is missing
-- API key kept out of Git: js/config.example.js is committed, js/config.js is git-ignored
+Deliverables:
+- All WS3 behaviour reimplemented with jQuery
+- Weather card filled from the OpenWeatherMap API, with the age of the data
+- Safe API key setup that keeps the key out of Git
 
-Folder: Worksheets/04-jQuery
-Branch: ws4-jquery (built on ws3-javascript)
-Done when: the weather card shows real data with a valid key and a clear message without one.
+Out of scope: saving state, history updates and server-side code (WS5 and WS6).
+
+Exit criteria:
+- With a valid key the card shows temperature, max/min, humidity, sunrise and sunset
+- Without a key, or when the request fails, the card shows a clear message instead of breaking
+- js/config.js is git-ignored and no API key appears in the repository
+
+Depends on: WS3 Interactive dashboard with plain JavaScript, an OpenWeatherMap API key
+Refs: branch ws4-jquery, folder Worksheets/04-jQuery
 ```
 
 ---
@@ -189,17 +213,22 @@ Quality pass on worksheets 1 to 4
 
 **Description**
 ```text
-Fix the small gaps left in the finished worksheets before starting new ones.
+Goal: Worksheets 1 to 4 are finished to a consistent quality standard, with no placeholders or known defects, before new work starts.
 
-Scope:
-- Replace the Bootstrap "Hello, world!" start.html with a real landing page, or remove it from WS3/WS4
-- Clock card: compute "Sunrise / Sunset" from the weather data instead of the fixed "above horizon" text
-- Weather card: friendly message when the city is not found or there is no network
-- Make the weather city configurable in config.js instead of hard-coding "leiria"
-- Accessibility: aria-pressed on toggle buttons, check the colour contrast of badges and buttons
-- Run every page through the W3C HTML validator and fix the errors
+Deliverables:
+- Placeholder content replaced or removed
+- More robust and configurable weather card
+- Accessibility and validation fixes across all pages
 
-Done when: every page validates, has no console errors and no placeholder content is left.
+Out of scope: new features or new worksheets (WS5 onwards).
+
+Exit criteria:
+- Every page passes the W3C HTML validator with no errors
+- No console errors and no placeholder or sample text left on any page
+- Toggle buttons are usable with a keyboard and screen reader
+
+Depends on: WS1 to WS4 milestones closed
+Refs: branches ws1-html5 to ws4-jquery, folders Worksheets/01 to 04
 ```
 
 ---
@@ -215,17 +244,22 @@ WS5 Persistent device state and live history
 
 **Description**
 ```text
-Suggested next worksheet: make the dashboard remember what the user does.
+Goal: The dashboard remembers what the user did, so state and history survive a page reload. (Suggested worksheet, adjust to the official statement.)
 
-Scope:
-- Save light and music state in localStorage and restore it when the page loads
-- Every toggle adds an entry to the history (category, new state, timestamp)
-- history.html builds its table from the saved entries instead of the fixed 2018 rows
-- "Clear history" button
-- "Last changed X minutes ago" labels on the dashboard, reusing the existing plural() helper
+Deliverables:
+- Device state saved in the browser and restored on load
+- History page built from real user actions
+- Way to clear the saved history
 
-Folder: Worksheets/05-... (name to match the worksheet statement)
-Done when: reloading the page keeps the state and the history shows real changes in order.
+Out of scope: server storage and sharing state between devices or users (WS6).
+
+Exit criteria:
+- After a reload every light and music control shows its last state
+- Each toggle adds one history row with category, state and time, newest first
+- Clearing the history empties the table and the saved data
+
+Depends on: WS4 jQuery dashboard with live OpenWeatherMap data
+Refs: folder Worksheets/05 (name to match the worksheet)
 ```
 
 ---
@@ -241,15 +275,22 @@ WS6 REST backend for devices and history
 
 **Description**
 ```text
-Suggested worksheet: move device state to a small server and talk to it over REST.
+Goal: Device state and history live on a server, so every browser sees the same data and secrets stay off the client. (Suggested worksheet, adjust to the official statement.)
 
-Scope:
-- Choose the stack used in class (e.g. Node/Express or PHP) and add Worksheets/06-Backend
-- REST endpoints: GET /devices, POST /devices/:id/toggle, GET /history
-- Dashboard reads and writes device state with $.ajax instead of localStorage
-- Call OpenWeatherMap from the server so the API key never reaches the browser
+Deliverables:
+- Small REST backend for devices and history
+- Dashboard and history pages using the backend instead of browser storage
+- Weather requests proxied through the server
 
-Done when: two browser tabs show the same device state and the key is no longer in any client file.
+Out of scope: user accounts, authentication and deployment to a public server.
+
+Exit criteria:
+- Two browser tabs show the same device state after a toggle and a refresh
+- GET /devices, POST /devices/:id/toggle and GET /history return the expected JSON
+- The OpenWeatherMap key is not present in any file sent to the browser
+
+Depends on: WS5 Persistent device state and live history, the backend stack used in class
+Refs: folder Worksheets/06-Backend
 ```
 
 ---
@@ -265,18 +306,92 @@ Final delivery with documentation and v1 release
 
 **Description**
 ```text
-Hand in the finished project in a clean, documented state.
+Goal: The project is handed in as a clean, documented repository that anyone can run from main.
 
-Scope:
-- All worksheet branches merged into main through pull requests
-- README with a project description, folder structure, how to run each worksheet, how to create js/config.js, and screenshots
-- Short changelog / report of what each worksheet added
-- Release tag v1.0 on main
+Deliverables:
+- All worksheet work merged into main
+- README with setup and run instructions and screenshots
+- Changelog of what each worksheet added, and a v1.0 release
 
-Done when: someone who clones main can open every worksheet by following the README alone.
+Out of scope: new features, unless needed to fix a defect found during final review.
+
+Exit criteria:
+- A fresh clone of main runs every worksheet by following the README alone
+- All other milestones are closed with no open issues
+- Tag v1.0 exists on main
+
+Depends on: all previous milestones
+Refs: branch main
 ```
 
-## 5. Ways to create this on GitHub
+## 5. Planned issues per milestone
+
+These are the tasks that become issues. Each one is linked to its milestone.
+Issues for WS1–WS4 are created and then closed as completed, so the finished
+work shows on the board.
+
+
+### WS1 Semantic HTML5 dashboard and history pages (done)
+
+- [x] Dashboard page (index.html) with Kitchen, Living Room and Clock sections showing temperature, lights, windows and music
+- [x] History page (history.html) with a table of past events
+- [x] Menu (nav) linking Dashboard and History
+- [x] Font Awesome icons for rooms and devices
+
+### WS2 Responsive Bootstrap layout for dashboard and history (done)
+
+- [x] Bootstrap start page (start.html) to check that the CDN setup works
+- [x] Dashboard laid out as Bootstrap cards in a responsive grid (1/2/3 columns)
+- [x] Responsive navbar with a collapse button on small screens
+- [x] History page with a striped, hoverable Bootstrap table
+
+### WS3 Interactive dashboard with plain JavaScript (done)
+
+- [x] Meaningful ids on every element the script uses
+- [x] Toggle buttons for lights and music: clicking switches text (On/Off), icon and colour
+- [x] Room temperatures replaced by random values every 5 seconds
+- [x] Live clock (updates every second) and today's date
+
+### WS4 jQuery dashboard with live OpenWeatherMap data (done)
+
+- [x] WS3 features (toggles, temperatures, clock) rewritten with jQuery selectors and events
+- [x] Weather card for Leiria loaded with $.getJSON from the OpenWeatherMap API: temperature, max/min, humidity, sunrise and sunset
+- [x] "Fetched X seconds / minutes / hours ago" label that updates every second
+- [x] Error message when the request fails or the API key is missing
+- [x] API key kept out of Git: js/config.example.js is committed, js/config.js is git-ignored
+
+### Quality pass on worksheets 1 to 4
+
+- [ ] Replace the Bootstrap "Hello, world!" start.html with a real landing page, or remove it from WS3/WS4
+- [ ] Clock card: compute "Sunrise / Sunset" from the weather data instead of the fixed "above horizon" text
+- [ ] Weather card: friendly message when the city is not found or there is no network
+- [ ] Make the weather city configurable in config.js instead of hard-coding "leiria"
+- [ ] Accessibility: aria-pressed on toggle buttons, check the colour contrast of badges and buttons
+- [ ] Run every page through the W3C HTML validator and fix the errors
+
+### WS5 Persistent device state and live history
+
+- [ ] Save light and music state in localStorage and restore it when the page loads
+- [ ] Every toggle adds an entry to the history (category, new state, timestamp)
+- [ ] history.html builds its table from the saved entries instead of the fixed 2018 rows
+- [ ] "Clear history" button
+- [ ] "Last changed X minutes ago" labels on the dashboard, reusing the existing plural() helper
+
+### WS6 REST backend for devices and history
+
+- [ ] Choose the stack used in class (e.g. Node/Express or PHP) and add Worksheets/06-Backend
+- [ ] REST endpoints: GET /devices, POST /devices/:id/toggle, GET /history
+- [ ] Dashboard reads and writes device state with $.ajax instead of localStorage
+- [ ] Call OpenWeatherMap from the server so the API key never reaches the browser
+
+### Final delivery with documentation and v1 release
+
+- [ ] All worksheet branches merged into main through pull requests
+- [ ] README with a project description, folder structure, how to run each worksheet, how to create js/config.js, and screenshots
+- [ ] Short changelog / report of what each worksheet added
+- [ ] Release tag v1.0 on main
+
+## 6. Ways to create this on GitHub
 
 The milestones and the Project board have to be created by the repo owner. The
 Claude GitHub integration can only create issues and attach them to milestones
