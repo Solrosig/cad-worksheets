@@ -63,6 +63,10 @@ Each milestone below matches the GitHub form under **Issues → Milestones →
 New milestone**, which has three fields: **Title**, **Due date (optional)** and
 **Description**. Copy each field into the form as it is.
 
+Titles follow one pattern: the worksheet code (when there is one), then the
+outcome the milestone delivers, with no punctuation. GitHub sorts milestones by
+due date, so the M1–M8 numbers in this file are only for reference.
+
 M1–M4 are already finished: after creating one, press **Close** so it shows as
 completed. The due dates for M5–M8 and the topics for WS5/WS6 are
 **placeholders**, so change them to match the course calendar.
@@ -73,7 +77,7 @@ completed. The due dates for M5–M8 and the topics for WS5/WS6 are
 
 **Title**
 ```text
-M1 – WS1 · HTML5
+WS1 Semantic HTML5 dashboard and history pages
 ```
 
 **Due date:** `2026-10-06`
@@ -99,7 +103,7 @@ Done when: both pages open in the browser, the menu works and the HTML validates
 
 **Title**
 ```text
-M2 – WS2 · Bootstrap
+WS2 Responsive Bootstrap layout for dashboard and history
 ```
 
 **Due date:** `2026-10-06`
@@ -125,7 +129,7 @@ Done when: the layout adapts from phone to desktop and the navbar collapses corr
 
 **Title**
 ```text
-M3 – WS3 · JavaScript
+WS3 Interactive dashboard with plain JavaScript
 ```
 
 **Due date:** `2026-10-06`
@@ -151,7 +155,7 @@ Done when: all toggles work, temperatures change and the clock ticks with no con
 
 **Title**
 ```text
-M4 – WS4 · jQuery + AJAX
+WS4 jQuery dashboard with live OpenWeatherMap data
 ```
 
 **Due date:** `2026-10-06`
@@ -178,7 +182,7 @@ Done when: the weather card shows real data with a valid key and a clear message
 
 **Title**
 ```text
-M5 – Polish of WS1–WS4
+Quality pass on worksheets 1 to 4
 ```
 
 **Due date:** `2026-11-24`
@@ -204,7 +208,7 @@ Done when: every page validates, has no console errors and no placeholder conten
 
 **Title**
 ```text
-M6 – WS5 · State and dynamic history
+WS5 Persistent device state and live history
 ```
 
 **Due date:** `2026-12-08`
@@ -230,7 +234,7 @@ Done when: reloading the page keeps the state and the history shows real changes
 
 **Title**
 ```text
-M7 – WS6 · Backend / REST
+WS6 REST backend for devices and history
 ```
 
 **Due date:** `2027-01-12`
@@ -254,7 +258,7 @@ Done when: two browser tabs show the same device state and the key is no longer 
 
 **Title**
 ```text
-M8 – Final delivery
+Final delivery with documentation and v1 release
 ```
 
 **Due date:** `2027-01-26`
@@ -283,14 +287,14 @@ folder:
 ```bash
 # Milestones (titles and due dates only; paste the descriptions from section 4 in the web form,
 # or add  -f description="..."  to each line)
-gh api repos/Solrosig/cad-worksheets/milestones -f title="M1 – WS1 · HTML5" -f due_on="2026-10-06T23:59:59Z" -f state=closed
-gh api repos/Solrosig/cad-worksheets/milestones -f title="M2 – WS2 · Bootstrap" -f due_on="2026-10-06T23:59:59Z" -f state=closed
-gh api repos/Solrosig/cad-worksheets/milestones -f title="M3 – WS3 · JavaScript" -f due_on="2026-10-06T23:59:59Z" -f state=closed
-gh api repos/Solrosig/cad-worksheets/milestones -f title="M4 – WS4 · jQuery + AJAX" -f due_on="2026-10-06T23:59:59Z" -f state=closed
-gh api repos/Solrosig/cad-worksheets/milestones -f title="M5 – Polish of WS1–WS4" -f due_on="2026-11-24T23:59:59Z"
-gh api repos/Solrosig/cad-worksheets/milestones -f title="M6 – WS5 · State and dynamic history" -f due_on="2026-12-08T23:59:59Z"
-gh api repos/Solrosig/cad-worksheets/milestones -f title="M7 – WS6 · Backend / REST" -f due_on="2027-01-12T23:59:59Z"
-gh api repos/Solrosig/cad-worksheets/milestones -f title="M8 – Final delivery" -f due_on="2027-01-26T23:59:59Z"
+gh api repos/Solrosig/cad-worksheets/milestones -f title="WS1 Semantic HTML5 dashboard and history pages" -f due_on="2026-10-06T23:59:59Z" -f state=closed
+gh api repos/Solrosig/cad-worksheets/milestones -f title="WS2 Responsive Bootstrap layout for dashboard and history" -f due_on="2026-10-06T23:59:59Z" -f state=closed
+gh api repos/Solrosig/cad-worksheets/milestones -f title="WS3 Interactive dashboard with plain JavaScript" -f due_on="2026-10-06T23:59:59Z" -f state=closed
+gh api repos/Solrosig/cad-worksheets/milestones -f title="WS4 jQuery dashboard with live OpenWeatherMap data" -f due_on="2026-10-06T23:59:59Z" -f state=closed
+gh api repos/Solrosig/cad-worksheets/milestones -f title="Quality pass on worksheets 1 to 4" -f due_on="2026-11-24T23:59:59Z"
+gh api repos/Solrosig/cad-worksheets/milestones -f title="WS5 Persistent device state and live history" -f due_on="2026-12-08T23:59:59Z"
+gh api repos/Solrosig/cad-worksheets/milestones -f title="WS6 REST backend for devices and history" -f due_on="2027-01-12T23:59:59Z"
+gh api repos/Solrosig/cad-worksheets/milestones -f title="Final delivery with documentation and v1 release" -f due_on="2027-01-26T23:59:59Z"
 
 # Labels
 for l in "worksheet:1d76db" "html:e34c26" "bootstrap:7952b3" "javascript:f1e05a" \
