@@ -59,70 +59,218 @@ worksheets stay unchanged.
 
 ## 4. Milestones
 
-Dates for M1–M4 are when the work was committed. Dates from M5 onwards are
-**placeholders**: change them to match the course calendar, and rename the
-topics to match the actual worksheet statements.
+Each milestone below matches the GitHub form under **Issues → Milestones →
+New milestone**, which has three fields: **Title**, **Due date (optional)** and
+**Description**. Copy each field into the form as it is.
 
-### M0 – Repository setup · due 2026-11-10
-Get `main` into a state that represents the project.
-- [ ] Merge `worksheets` (or `ws4-jquery`) into `main` with a PR
-- [ ] Write the README: project description, folder structure, how to open each worksheet, how to create `js/config.js` for WS4
-- [ ] Decide on a branch convention (keep one `wsN-*` branch per worksheet, merge to `main` when done) and document it
-- [ ] Add the labels and milestones from this file
-- [ ] (Optional) Enable GitHub Pages from `main` so each worksheet can be opened online
+M1–M4 are already finished: after creating one, press **Close** so it shows as
+completed. The due dates for M5–M8 and the topics for WS5/WS6 are
+**placeholders**, so change them to match the course calendar.
 
-### M1 – WS1 · HTML5 · ✅ done 2026-10-06 (`ws1-html5`)
-- [x] W1: Dashboard page (`index.html`) with kitchen, living room and clock sections
-- [x] W1: History page (`history.html`) with a table
-- [x] W1: Menu linking the pages
-- [x] W1: Font Awesome icons
+---
 
-### M2 – WS2 · Bootstrap · ✅ done 2026-10-06 (`ws2-bootstrap`)
-- [x] W2: Bootstrap start page
-- [x] W2: Dashboard with cards and responsive navbar
-- [x] W2: History with Bootstrap striped table
+### M1
 
-### M3 – WS3 · JavaScript · ✅ done 2026-10-06 (`ws3-javascript`)
-- [x] W3-1: First JavaScript page / meaningful ids
-- [x] W3-2a/c/d: Light and music toggle buttons (text, icon, colour)
-- [x] W3: Random temperatures every 5 s
-- [x] W3: Live clock and date
+**Title**
+```text
+M1 – WS1 · HTML5
+```
 
-### M4 – WS4 · jQuery + AJAX · ✅ done 2026-10-06 (`ws4-jquery`)
-- [x] W4-1: Dashboard adapted to jQuery
-- [x] W4-2a/b: Weather panel from the OpenWeatherMap API
-- [x] W4-2c: "Fetched X seconds/minutes/hours ago"
-- [x] `config.example.js` template, `config.js` git-ignored
+**Due date:** `2026-10-06`
 
-### M5 – Polish of WS1–WS4 · due 2026-11-24
-Small fixes to the finished worksheets.
-- [ ] Replace the "Hello, world!" `start.html` with a real landing page, or remove it from WS3/WS4
-- [ ] Sunrise/sunset row in the Clock card: compute it from the weather data instead of the fixed "above horizon"
-- [ ] Show a friendly message in the weather card when the city isn't found or there's no network
-- [ ] Make the city configurable (in `config.js`) instead of hard-coding `leiria`
-- [ ] Accessibility pass: `aria-pressed` on toggle buttons, colour contrast of badges
-- [ ] Validate all pages with the W3C validator
+**Description**
+```text
+Worksheet 1: build the "Home Sweet Home" smart-home site with plain, semantic HTML5 only (no CSS framework, no JavaScript).
 
-### M6 – WS5 · State and dynamic history (suggested) · due 2026-12-08
-The likely next step after jQuery: make the dashboard remember things.
-- [ ] Save light/music state in `localStorage` and restore it on load
-- [ ] Each toggle adds a row to the history (category, state, timestamp)
-- [ ] `history.html` builds its table from saved data instead of fixed 2018 rows
-- [ ] "Clear history" button
-- [ ] "Last changed X minutes ago" labels on the dashboard, reusing the `plural()` helper
+Scope:
+- Dashboard page (index.html) with Kitchen, Living Room and Clock sections showing temperature, lights, windows and music
+- History page (history.html) with a table of past events
+- Menu (nav) linking Dashboard and History
+- Font Awesome icons for rooms and devices
 
-### M7 – WS6 · Backend / REST (suggested) · due 2027-01-12
-If the course continues with server-side work.
-- [ ] Choose a stack (e.g. Node/Express or PHP) and add `Worksheets/06-Backend/`
-- [ ] REST endpoints: `GET /devices`, `POST /devices/:id/toggle`, `GET /history`
-- [ ] Dashboard reads and writes device state with `$.ajax` instead of `localStorage`
-- [ ] Move the OpenWeatherMap call to the server so the API key never reaches the browser
+Folder: Worksheets/01-HTML5
+Branch: ws1-html5
+Done when: both pages open in the browser, the menu works and the HTML validates.
+```
 
-### M8 – Final delivery · due 2027-01-26
-- [ ] All worksheet branches merged into `main`
-- [ ] README with screenshots of each worksheet
-- [ ] Short report / changelog of what each worksheet added
-- [ ] Release tag `v1.0`
+---
+
+### M2
+
+**Title**
+```text
+M2 – WS2 · Bootstrap
+```
+
+**Due date:** `2026-10-06`
+
+**Description**
+```text
+Worksheet 2: restyle the WS1 pages with Bootstrap 5 and make them responsive.
+
+Scope:
+- Bootstrap start page (start.html) to check that the CDN setup works
+- Dashboard laid out as Bootstrap cards in a responsive grid (1/2/3 columns)
+- Responsive navbar with a collapse button on small screens
+- History page with a striped, hoverable Bootstrap table
+
+Folder: Worksheets/02-Bootstrap
+Branch: ws2-bootstrap (built on ws1-html5)
+Done when: the layout adapts from phone to desktop and the navbar collapses correctly.
+```
+
+---
+
+### M3
+
+**Title**
+```text
+M3 – WS3 · JavaScript
+```
+
+**Due date:** `2026-10-06`
+
+**Description**
+```text
+Worksheet 3: make the dashboard interactive with plain JavaScript (no libraries).
+
+Scope:
+- Meaningful ids on every element the script uses
+- Toggle buttons for lights and music: clicking switches text (On/Off), icon and colour
+- Room temperatures replaced by random values every 5 seconds
+- Live clock (updates every second) and today's date
+
+Folder: Worksheets/03-Javascript (code in js/index.js)
+Branch: ws3-javascript (built on ws2-bootstrap)
+Done when: all toggles work, temperatures change and the clock ticks with no console errors.
+```
+
+---
+
+### M4
+
+**Title**
+```text
+M4 – WS4 · jQuery + AJAX
+```
+
+**Due date:** `2026-10-06`
+
+**Description**
+```text
+Worksheet 4: rewrite the dashboard logic in jQuery and add live weather data from a web API.
+
+Scope:
+- WS3 features (toggles, temperatures, clock) rewritten with jQuery selectors and events
+- Weather card for Leiria loaded with $.getJSON from the OpenWeatherMap API: temperature, max/min, humidity, sunrise and sunset
+- "Fetched X seconds / minutes / hours ago" label that updates every second
+- Error message when the request fails or the API key is missing
+- API key kept out of Git: js/config.example.js is committed, js/config.js is git-ignored
+
+Folder: Worksheets/04-jQuery
+Branch: ws4-jquery (built on ws3-javascript)
+Done when: the weather card shows real data with a valid key and a clear message without one.
+```
+
+---
+
+### M5
+
+**Title**
+```text
+M5 – Polish of WS1–WS4
+```
+
+**Due date:** `2026-11-24`
+
+**Description**
+```text
+Fix the small gaps left in the finished worksheets before starting new ones.
+
+Scope:
+- Replace the Bootstrap "Hello, world!" start.html with a real landing page, or remove it from WS3/WS4
+- Clock card: compute "Sunrise / Sunset" from the weather data instead of the fixed "above horizon" text
+- Weather card: friendly message when the city is not found or there is no network
+- Make the weather city configurable in config.js instead of hard-coding "leiria"
+- Accessibility: aria-pressed on toggle buttons, check the colour contrast of badges and buttons
+- Run every page through the W3C HTML validator and fix the errors
+
+Done when: every page validates, has no console errors and no placeholder content is left.
+```
+
+---
+
+### M6
+
+**Title**
+```text
+M6 – WS5 · State and dynamic history
+```
+
+**Due date:** `2026-12-08`
+
+**Description**
+```text
+Suggested next worksheet: make the dashboard remember what the user does.
+
+Scope:
+- Save light and music state in localStorage and restore it when the page loads
+- Every toggle adds an entry to the history (category, new state, timestamp)
+- history.html builds its table from the saved entries instead of the fixed 2018 rows
+- "Clear history" button
+- "Last changed X minutes ago" labels on the dashboard, reusing the existing plural() helper
+
+Folder: Worksheets/05-... (name to match the worksheet statement)
+Done when: reloading the page keeps the state and the history shows real changes in order.
+```
+
+---
+
+### M7
+
+**Title**
+```text
+M7 – WS6 · Backend / REST
+```
+
+**Due date:** `2027-01-12`
+
+**Description**
+```text
+Suggested worksheet: move device state to a small server and talk to it over REST.
+
+Scope:
+- Choose the stack used in class (e.g. Node/Express or PHP) and add Worksheets/06-Backend
+- REST endpoints: GET /devices, POST /devices/:id/toggle, GET /history
+- Dashboard reads and writes device state with $.ajax instead of localStorage
+- Call OpenWeatherMap from the server so the API key never reaches the browser
+
+Done when: two browser tabs show the same device state and the key is no longer in any client file.
+```
+
+---
+
+### M8
+
+**Title**
+```text
+M8 – Final delivery
+```
+
+**Due date:** `2027-01-26`
+
+**Description**
+```text
+Hand in the finished project in a clean, documented state.
+
+Scope:
+- All worksheet branches merged into main through pull requests
+- README with a project description, folder structure, how to run each worksheet, how to create js/config.js, and screenshots
+- Short changelog / report of what each worksheet added
+- Release tag v1.0 on main
+
+Done when: someone who clones main can open every worksheet by following the README alone.
+```
 
 ## 5. Ways to create this on GitHub
 
@@ -133,12 +281,12 @@ installed and are logged in (`gh auth login`), run these from the repository
 folder:
 
 ```bash
-# Milestones
-gh api repos/Solrosig/cad-worksheets/milestones -f title="M0 – Repository setup" -f due_on="2026-11-10T23:59:59Z"
-gh api repos/Solrosig/cad-worksheets/milestones -f title="M1 – WS1 · HTML5" -f state=closed
-gh api repos/Solrosig/cad-worksheets/milestones -f title="M2 – WS2 · Bootstrap" -f state=closed
-gh api repos/Solrosig/cad-worksheets/milestones -f title="M3 – WS3 · JavaScript" -f state=closed
-gh api repos/Solrosig/cad-worksheets/milestones -f title="M4 – WS4 · jQuery + AJAX" -f state=closed
+# Milestones (titles and due dates only; paste the descriptions from section 4 in the web form,
+# or add  -f description="..."  to each line)
+gh api repos/Solrosig/cad-worksheets/milestones -f title="M1 – WS1 · HTML5" -f due_on="2026-10-06T23:59:59Z" -f state=closed
+gh api repos/Solrosig/cad-worksheets/milestones -f title="M2 – WS2 · Bootstrap" -f due_on="2026-10-06T23:59:59Z" -f state=closed
+gh api repos/Solrosig/cad-worksheets/milestones -f title="M3 – WS3 · JavaScript" -f due_on="2026-10-06T23:59:59Z" -f state=closed
+gh api repos/Solrosig/cad-worksheets/milestones -f title="M4 – WS4 · jQuery + AJAX" -f due_on="2026-10-06T23:59:59Z" -f state=closed
 gh api repos/Solrosig/cad-worksheets/milestones -f title="M5 – Polish of WS1–WS4" -f due_on="2026-11-24T23:59:59Z"
 gh api repos/Solrosig/cad-worksheets/milestones -f title="M6 – WS5 · State and dynamic history" -f due_on="2026-12-08T23:59:59Z"
 gh api repos/Solrosig/cad-worksheets/milestones -f title="M7 – WS6 · Backend / REST" -f due_on="2027-01-12T23:59:59Z"
